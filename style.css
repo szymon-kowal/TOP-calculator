@@ -1,0 +1,15 @@
+.container {
+    background-color: black;
+    width: 400px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px;
+    grid-template-areas: 
+    "display display display display"
+    "AC +/- % /"
+    "7 8 9 *"
+    "4 5 6 -"
+    "1 2 3 +"
+    "0 0 . =";
+}
