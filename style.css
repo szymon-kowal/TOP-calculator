@@ -1,15 +1,39 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(150, 253, 253);
+}
+
 .container {
     background-color: black;
     width: 400px;
     height: 600px;
     display: grid;
-    grid-template-columns: 100px 100px 100px 100px;
-    grid-template-rows: 100px 100px 100px 100px 100px 100px;
-    grid-template-areas: 
-    "display display display display"
-    "AC +/- % /"
-    "7 8 9 *"
-    "4 5 6 -"
-    "1 2 3 +"
-    "0 0 . =";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap:5px;
+    border: solid 5px black;
+}
+
+.display {
+    display: flex;
+    background-color: gray;
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 4;
+    width:390px;
+    font-size: 80px;
+    font-weight: 600;
+    text-align: end;
+    padding: 5px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+button {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.zero {
+    grid-row: 6/ span 1;
+    grid-column: 1 / span 2;
 }
