@@ -1,6 +1,12 @@
 body {
     font-family: 'Courier New', Courier, monospace;
     background-color: rgb(150, 253, 253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body, html {
+    height: 100%;
 }
 
 .container {
@@ -12,11 +18,12 @@ body {
     grid-template-rows: repeat(6, 1fr);
     gap:5px;
     border: solid 5px black;
+    box-shadow: 0 0 3px 3px gray;
 }
 
 .display {
     display: flex;
-    background-color: gray;
+    background-color: rgb(185, 185, 185);
     grid-row: 1 / span 1;
     grid-column: 1 / span 4;
     width:390px;

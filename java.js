@@ -2,15 +2,31 @@ let num1;
 let num2;
 let operator;
 let numButtons = 19;
+let output;
 const elements = ['AC', '+/-', '%', '/', '7', '8', '9', '*', '4', '5', '6', 
 '-', '1','2','3', '+', 'zero', '.', '='];
 const numbersArray = ['zero','1','2','3', '4', '5', '6', '7', '8', '9' ,'.']
+const numbersOnly = ['zero','1','2','3', '4', '5', '6', '7', '8', '9']
 const operatorArray = elements.filter( (element) => !numbersArray.includes(element) );
+
+// Swapping text on calculator
+
+const textCalc = document.querySelector('.text');
+textCalc.textContent = '12345678';
+
+
+
+// TODO : 
+// - write function that outputs what is inside of button
+// - write function that appends numbers and dot`s to the display
+// - write a code that displays numbers after operator was clicked
+// - write a function that removes text when AC will be clicked
+
+
 
 // Creating new buttons
 
 const container = document.querySelector('.container')
-
 
 for (let i = 0; i < numButtons; i++) {
     const newButton = document.createElement('button');
@@ -19,14 +35,18 @@ for (let i = 0; i < numButtons; i++) {
     // gives properties if button is included in given array
     if (numbersArray.includes(elements[i]) == true) {
         newButton.style.cssText += 'background-color: rgb(55, 55, 250);'
+        newButton.addEventListener('click', () => {calcNumb = newButton.textContent
+        });
     } else {
         newButton.style.cssText += 'background-color: orange;'
+        newButton.addEventListener('click', () => {operator = newButton.textContent
+        });
     }
     container.appendChild(newButton);
 }
 
+
 let zeroButton = document.querySelector('.zero');
-console.log(zeroButton)
 zeroButton.textContent = '0';
 // Function that takes numbers and operator and returns result
 
@@ -70,3 +90,7 @@ function percent(num1) {
 function plusminus(num1) {
     return num1 * -1;
 }
+
+const buttons = document.querySelectorAll('button');
+
+const buttonsArray = Array.from(buttons);
