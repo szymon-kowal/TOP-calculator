@@ -47,7 +47,26 @@ for (let i = 0; i < numButtons; i++) {
             dot = newButton.textContent;
             disp.textContent = appendDot(dot);
         });
-    } else {
+    } else if (elements[i] == 'AC') {
+        newButton.style.cssText += 'background-color: orange;;'
+        newButton.addEventListener('click', () => {
+            disp.textContent = AC();
+        });
+    } else if (elements[i] == '+/-') {
+        newButton.style.cssText += 'background-color: orange;'
+        newButton.addEventListener('click', () => {
+            text = disp.textContent;
+            console.log(text.length)
+            if (text.length < 8 && parseFloat(text) > 0) {
+            appendedNum = String(plusminus(text));
+            } else if (text.length < 9 && parseFloat(text) < 0) {
+            appendedNum = String(plusminus(text));
+            };
+            disp.textContent = appendedNum;
+   
+        });
+    } 
+    else {
         newButton.style.cssText += 'background-color: orange;'
         newButton.addEventListener('click', () => {operator = newButton.textContent
         });
@@ -64,7 +83,7 @@ function appendNum(numb) {
     else { 
         return appendedNum;
         }
-    }
+}
 
 function appendDot(dot) {
     if (appendedNum.length < 8 && dotFlag == 0) {
@@ -74,7 +93,20 @@ function appendDot(dot) {
     else { 
         return appendedNum;
         }
+}
+
+function AC() {
+    return appendedNum = '0';
+}
+
+function plusminus() {  
+    console.log(appendedNum.length)
+    if (appendedNum.length < 7) {
+    appendedNum = parseInt(appendedNum) * -1;
     }
+    return appendedNum;
+}
+
 
 
 
@@ -123,6 +155,4 @@ function plusminus(num1) {
     return num1 * -1;
 }
 
-const buttons = document.querySelectorAll('button');
 
-const buttonsArray = Array.from(buttons);

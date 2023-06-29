@@ -27,6 +27,7 @@ body, html {
     grid-row: 1 / span 1;
     grid-column: 1 / span 4;
     width:390px;
+    height:101px;
     font-size: 80px;
     font-weight: 600;
     text-align: end;
