@@ -56,17 +56,23 @@ for (let i = 0; i < numButtons; i++) {
         newButton.style.cssText += 'background-color: orange;'
         newButton.addEventListener('click', () => {
             text = disp.textContent;
-            console.log(text.length)
             if (text.length < 8 && parseFloat(text) > 0) {
             appendedNum = String(plusminus(text));
             } else if (text.length < 9 && parseFloat(text) < 0) {
             appendedNum = String(plusminus(text));
             };
             disp.textContent = appendedNum;
-   
         });
-    } 
-    else {
+    } else if (elements[i] == '%') {
+        newButton.style.cssText += 'background-color: orange;'
+        newButton.addEventListener('click', () => {
+            text = disp.textContent;
+            if (text.length < 6 ) {
+                appendedNum = String(percent(appendedNum))
+            }
+            disp.textContent = appendedNum;
+        });
+    } else {
         newButton.style.cssText += 'background-color: orange;'
         newButton.addEventListener('click', () => {operator = newButton.textContent
         });
@@ -77,6 +83,9 @@ for (let i = 0; i < numButtons; i++) {
 
 // Append number to string and check if it can be displayed on display
 function appendNum(numb) {
+    if (appendedNum == '0') {
+        appendedNum = ''
+    }
     if (appendedNum.length < 8) {
         return appendedNum += numb;
     } 
@@ -86,6 +95,9 @@ function appendNum(numb) {
 }
 
 function appendDot(dot) {
+    if (appendedNum == '0') {
+        appendedNum = '0'
+    }
     if (appendedNum.length < 8 && dotFlag == 0) {
         dotFlag = 1;
         return appendedNum += dot;
@@ -96,7 +108,9 @@ function appendDot(dot) {
 }
 
 function AC() {
-    return appendedNum = '0';
+    appendedNum = '0';
+    dotFlag = 0;
+    return appendedNum;
 }
 
 function plusminus() {  
@@ -104,6 +118,13 @@ function plusminus() {
     if (appendedNum.length < 7) {
     appendedNum = parseInt(appendedNum) * -1;
     }
+    return appendedNum;
+}
+
+function percent(appendedNum) {
+    let firstStr = appendedNum.substring(0,appendedNum.length-1)
+    let secondStr = appendedNum.substring(appendedNum.length-1)
+    appendedNum = firstStr + '.' + secondStr;
     return appendedNum;
 }
 
