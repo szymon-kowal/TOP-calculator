@@ -1,10 +1,11 @@
-let num1;
-let num2;
+let num1 = 0;
+let num2 = 0;
 let appendedNum = '';
 let operator;
 let numButtons = 19;
 let output;
 let dotFlag = 0;
+let percentFlag = 0;
 const elements = ['AC', '+/-', '%', '/', '7', '8', '9', '*', '4', '5', '6', 
 '-', '1','2','3', '+', 'zero', '.', '='];
 const numbersArray = ['zero','1','2','3', '4', '5', '6', '7', '8', '9' ,'.']
@@ -67,7 +68,7 @@ for (let i = 0; i < numButtons; i++) {
         newButton.style.cssText += 'background-color: orange;'
         newButton.addEventListener('click', () => {
             text = disp.textContent;
-            if (text.length < 6 ) {
+            if (text.length < 8 && percentFlag == 0) {
                 appendedNum = String(percent(appendedNum))
             }
             disp.textContent = appendedNum;
@@ -110,6 +111,7 @@ function appendDot(dot) {
 function AC() {
     appendedNum = '0';
     dotFlag = 0;
+    percentFlag = 0;
     return appendedNum;
 }
 
@@ -124,16 +126,17 @@ function plusminus() {
 function percent(appendedNum) {
     let firstStr = appendedNum.substring(0,appendedNum.length-1)
     let secondStr = appendedNum.substring(appendedNum.length-1)
-    appendedNum = firstStr + '.' + secondStr;
+    appendedNum = firstStr + '.' + secondStr;                                               
     return appendedNum;
 }
-
-
-
 
 let zeroButton = document.querySelector('.zero');
 zeroButton.textContent = '0';
 // Function that takes numbers and operator and returns result
+
+function calculate() {
+    
+}
 
 function operate(num1,num2,operator) {
     if (operator == '+') {
@@ -144,10 +147,6 @@ function operate(num1,num2,operator) {
         return multiply(num1,num2);
     } else if (operator == '/') {
         return divide(num1,num2);
-    } else if (operator == '%') {
-        return percent(num1);
-    } else if (operator == '+/-') {
-        return plusminus(num1);
     }
 }
 
@@ -172,8 +171,5 @@ function percent(num1) {
     return num1/100;
 }
 
-function plusminus(num1) {
-    return num1 * -1;
-}
 
 
