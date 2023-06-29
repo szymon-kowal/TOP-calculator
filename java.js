@@ -1,8 +1,10 @@
 let num1;
 let num2;
+let appendedNum = '';
 let operator;
 let numButtons = 19;
 let output;
+let dotFlag = 0;
 const elements = ['AC', '+/-', '%', '/', '7', '8', '9', '*', '4', '5', '6', 
 '-', '1','2','3', '+', 'zero', '.', '='];
 const numbersArray = ['zero','1','2','3', '4', '5', '6', '7', '8', '9' ,'.']
@@ -14,11 +16,9 @@ const operatorArray = elements.filter( (element) => !numbersArray.includes(eleme
 const textCalc = document.querySelector('.text');
 textCalc.textContent = '12345678';
 
-
-
 // TODO : 
-// - write function that outputs what is inside of button
-// - write function that appends numbers and dot`s to the display
+// - write function that outputs what is inside of button - done
+// - write function that appends numbers and dot`s to the display - done
 // - write a code that displays numbers after operator was clicked
 // - write a function that removes text when AC will be clicked
 
@@ -27,15 +27,25 @@ textCalc.textContent = '12345678';
 // Creating new buttons
 
 const container = document.querySelector('.container')
+const disp = document.querySelector('.text');
+
 
 for (let i = 0; i < numButtons; i++) {
     const newButton = document.createElement('button');
     newButton.classList.add(`${elements[i]}`);
     newButton.textContent = `${elements[i]}`;
     // gives properties if button is included in given array
-    if (numbersArray.includes(elements[i]) == true) {
+    if (numbersOnly.includes(elements[i]) == true) {
         newButton.style.cssText += 'background-color: rgb(55, 55, 250);'
-        newButton.addEventListener('click', () => {calcNumb = newButton.textContent
+        newButton.addEventListener('click', () => {
+            calcNumb = newButton.textContent;
+            disp.textContent = appendNum(calcNumb);
+        });
+    } else if (elements[i] == '.') {
+        newButton.style.cssText += 'background-color: rgb(55, 55, 250);'
+        newButton.addEventListener('click', () => {
+            dot = newButton.textContent;
+            disp.textContent = appendDot(dot);
         });
     } else {
         newButton.style.cssText += 'background-color: orange;'
@@ -44,6 +54,28 @@ for (let i = 0; i < numButtons; i++) {
     }
     container.appendChild(newButton);
 }
+
+
+// Append number to string and check if it can be displayed on display
+function appendNum(numb) {
+    if (appendedNum.length < 8) {
+        return appendedNum += numb;
+    } 
+    else { 
+        return appendedNum;
+        }
+    }
+
+function appendDot(dot) {
+    if (appendedNum.length < 8 && dotFlag == 0) {
+        dotFlag = 1;
+        return appendedNum += dot;
+    } 
+    else { 
+        return appendedNum;
+        }
+    }
+
 
 
 let zeroButton = document.querySelector('.zero');
